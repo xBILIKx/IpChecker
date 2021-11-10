@@ -1,18 +1,15 @@
 package com.example.ipchecker
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.ipchecker.model.IIpRequest
-import com.example.ipchecker.model.IpObj
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
 
 class MainViewModel: ViewModel() {
     private val _ipLiveData = MutableLiveData<String>()
-    private val _errorLiveData = MutableLiveData<String>()
+    private var _errorLiveData = MutableLiveData<String>()
     val errorLiveData: LiveData<String>
         get() = _errorLiveData
     val ipLiveData: LiveData<String>
@@ -42,5 +39,9 @@ class MainViewModel: ViewModel() {
                 }
             }
         })
+    }
+
+    fun clearError(){
+        _errorLiveData = MutableLiveData<String>()
     }
 }

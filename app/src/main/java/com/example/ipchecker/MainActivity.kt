@@ -17,7 +17,9 @@ class MainActivity : AppCompatActivity() {
         val vm = ViewModelProvider(this)[MainViewModel::class.java]
 
         vm.errorLiveData.observe(this, {
+            vm.clearError()
             Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+
         })
 
         vm.ipLiveData.observe(this, {
